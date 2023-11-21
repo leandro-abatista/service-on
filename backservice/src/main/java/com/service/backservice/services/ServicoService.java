@@ -39,4 +39,13 @@ public class ServicoService {
 	public Servico alterar(Servico servico) {
 		return servicoRepository.saveAndFlush(servico);
 	}
+	
+	/**
+	 * Método para excluir um serviço
+	 * @param id
+	 */
+	public void excluir(Long id) {
+		Servico s = servicoRepository.findById(id).get();
+		servicoRepository.delete(s);
+	}
 }
