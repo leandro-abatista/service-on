@@ -28,6 +28,15 @@ public class ServicoService {
 	 * @return
 	 */
 	public Servico inserir(Servico servico) {
-		return servicoRepository.save(servico);
+		return servicoRepository.saveAndFlush(servico);
+	}
+	
+	/**
+	 * Método para atualizar um serviço já existente
+	 * @param servico
+	 * @return
+	 */
+	public Servico alterar(Servico servico) {
+		return servicoRepository.saveAndFlush(servico);
 	}
 }
