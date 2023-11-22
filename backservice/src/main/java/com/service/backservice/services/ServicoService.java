@@ -27,17 +27,29 @@ public class ServicoService {
 	 * @param servico
 	 * @return
 	 */
-	public Servico inserir(Servico servico) {
-		return servicoRepository.saveAndFlush(servico);
+	public Servico inserir(Servico s) {
+		
+		//if(servico)
+		if(s.getValor() == null || s.getValor() == 0 || s.getDataPagamento() == null) {
+			s.setStatus("pendente");
+		} else {
+			s.setStatus("realizado");
+		}
+		return servicoRepository.saveAndFlush(s);
 	}
+	
+	
 	
 	/**
 	 * Método para atualizar um serviço já existente
 	 * @param servico
 	 * @return
 	 */
-	public Servico alterar(Servico servico) {
-		return servicoRepository.saveAndFlush(servico);
+	public Servico alterar(Servico s) {
+		if(s.getValor() != null && s.getValor() != 0 && s.getDataPagamento() != null) {
+			s.setStatus("realizado");
+		}
+		return servicoRepository.saveAndFlush(s);
 	}
 	
 	/**
