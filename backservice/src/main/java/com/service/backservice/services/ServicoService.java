@@ -11,7 +11,7 @@ import com.service.backservice.repositories.ServicoRepository;
 @Service
 public class ServicoService {
 
-	@Autowired
+	@Autowired//injeção de dependência
 	private ServicoRepository servicoRepository;
 	
 	/**
