@@ -14,8 +14,20 @@ public class ServicoService {
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
+	/**
+	 * Método para buscar todos os serviços com pagamento pendente ou com valor igual a 0
+	 * @return
+	 */
 	public List<Servico> buscarServicosPagamentosPendente() {
-		return servicoRepository.buscarServicosPagamentoPendente();
+		return servicoRepository.buscarServicosPagamentoPendentes();
+	}
+	
+	/**
+	 * Método para todos os serviços cancelados
+	 * @return
+	 */
+	public List<Servico> buscarServicosCancelados() {
+		return servicoRepository.buscarServicosCancelados();
 	}
 	
 	/**
