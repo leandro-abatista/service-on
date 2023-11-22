@@ -3,11 +3,19 @@ package com.service.backservice.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.service.backservice.entities.Servico;
 import com.service.backservice.services.ServicoService;
+
+import jakarta.websocket.server.PathParam;
 
 /**
  * Classe de controle, onde realiza a comunicação entre a classe intermediária de  serviço
@@ -22,7 +30,46 @@ public class ServicoController {
 	@Autowired//injeção de dependência
 	private ServicoService servicoService;
 	
+	/**
+	 * Método listar todos os serviços
+	 * @return
+	 */
+	@GetMapping("/")
 	public List<Servico> buscarTodos(){
 		return servicoService.listarTodos();
+	}
+	
+	/**
+	 * Método para buscar todos os serviços com pagamento pendente ou com valor igual a 0
+	 * @return
+	 */
+	@GetMapping("/pagamentosPendentes")
+	public List<Servico> buscarServicosPagamentosPendente() {
+		return servicoService.buscarServicosPagamentosPendente();
+	}
+	
+	/**
+	 * Método para todos os serviços cancelados
+	 * @return
+	 */
+	@GetMapping("/servicosCancelados")
+	public List<Servico> buscarServicosCancelados() {
+		return servicoService.buscarServicosCancelados();
+	}
+	
+	@PostMapping("/cadastrar")
+	public Servico inserir(@RequestBody Servico s) {
+		return servicoService.inserir(s);
+	}
+	
+	@PutMapping("/atualizar")
+	public Servico alterar(@RequestBody Servico s) {
+		return servicoService.alterar(s);
+	}
+	
+	@DeleteMapping("/remover/{id}")
+	public ResponseEntity<Void> excluir(@PathParam("id") Long id) {
+		servicoService.excluir(id);
+		return ResponseEntity.ok().build();
 	}
 }
