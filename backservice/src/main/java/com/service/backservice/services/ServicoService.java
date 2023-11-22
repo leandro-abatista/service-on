@@ -14,6 +14,10 @@ public class ServicoService {
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
+	public List<Servico> buscarServicosPagamentosPendente() {
+		return servicoRepository.buscarServicosPagamentoPendente();
+	}
+	
 	/**
 	 * Método para listar todos os serviços criados
 	 * @return
