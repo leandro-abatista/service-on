@@ -12,6 +12,8 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 
+
+
 @Entity
 @Table(name = "servico")
 @Data
