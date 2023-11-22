@@ -1,7 +1,6 @@
 package com.service.backservice.entities;
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
