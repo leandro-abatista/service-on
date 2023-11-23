@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +46,7 @@ public class ServicoController {
 	 * @return
 	 */
 	@GetMapping("/pagamentosPendentes")
+	@CrossOrigin("http://localhost:5173")
 	public List<Servico> buscarServicosPagamentosPendente() {
 		return servicoService.buscarServicosPagamentosPendente();
 	}
@@ -54,27 +56,32 @@ public class ServicoController {
 	 * @return
 	 */
 	@GetMapping("/servicosCancelados")
+	@CrossOrigin("http://localhost:5173")
 	public List<Servico> buscarServicosCancelados() {
 		return servicoService.buscarServicosCancelados();
 	}
 	
 	@PostMapping("/cadastrar")
+	@CrossOrigin("http://localhost:5173")
 	public Servico inserir(@RequestBody Servico s) {
 		return servicoService.inserir(s);
 	}
 	
 	@PutMapping("/atualizar")
+	@CrossOrigin("http://localhost:5173")
 	public Servico alterar(@RequestBody Servico s) {
 		return servicoService.alterar(s);
 	}
 	
 	@PostMapping("/cancelar/{id}")
+	@CrossOrigin("http://localhost:5173")
 	public ResponseEntity<Void> cancelar(@PathVariable("id") Long id) {
 		servicoService.cancelarServico(id);
 		return ResponseEntity.ok().build();
 	}
 	
 	@DeleteMapping("/remover/{id}")
+	@CrossOrigin("http://localhost:5173")
 	public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
 		servicoService.excluir(id);
 		return ResponseEntity.ok().build();
